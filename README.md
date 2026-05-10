@@ -20,3 +20,17 @@ python truedge_dashboard.py
 ---
 
 Want me to embed this directly into your repo or tailor it further for GitHub Pages or deployment pipelines?
+name: Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Deploy Hook
+        run: |
+          curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
